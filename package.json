@@ -10,6 +10,10 @@
   "keywords": ["webpack", "fabricator", "fabricator-assemble"],
   "author": "ksotello",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ksotello/webpack-fabricator-assemble.git"
+  },
   "dependencies": {
     "fabricator-assemble": "^1.3.0"
   },
