@@ -1,15 +1,15 @@
 {
   "name": "webpack-fabricator-assemble",
   "version": "1.0.0",
-  "description": "",
+  "description": "A webpack plugin for the fabricator-assemble module",
   "main": "index.js",
   "scripts": {
     "build": "tsc index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["webpack", "fabricator", "fabricator-assemble"],
+  "author": "ksotello",
+  "license": "MIT",
   "dependencies": {
     "fabricator-assemble": "^1.3.0"
   },
