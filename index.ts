@@ -17,25 +17,27 @@ interface FabricatorOptions {
 }
 
 // A JavaScript class.
-class WebpackFabricatorAssembly {
-  private options: FabricatorOptions;
-
-  constructor(options: FabricatorOptions) {
-    this.options = options;
+module.exports = (HtmlWebpackPlugin => {
+  return class WebpackFabricatorAssembly {
+    private options: FabricatorOptions;
+  
+    constructor(options: FabricatorOptions) {
+      this.options = options;
+    }
+  
+    apply(compiler) {
+      compiler.hooks.compilation.tap(
+        'WebpackFabricatorAssembly',
+        (compilation, callback) => {
+          fabAssemble(this.options);
+          HtmlWebpackPlugin && HtmlWebpackPlugin.getHooks(compilation).afterEmit.tapAsync(
+            'WebpackFabricatorAssembly',
+            (data, cb) => {
+              cb(null, data)
+            }
+          );
+        }
+      );
+    }
   }
-
-  apply(compiler) {
-
-    compiler.hooks.beforeCompile.tapAsync(
-      'WebpackFabricatorAssembly',
-      (compilation, callback) => {
-
-        fabAssemble(this.options);        
-
-        callback();
-      }
-    );
-  }
-}
-
-module.exports = WebpackFabricatorAssembly;
+});

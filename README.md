@@ -4,6 +4,10 @@
 
 A webpack plugin for the [fabricator-assemble](https://github.com/fbrctr/fabricator-assemble "fabricator-assemble github page") module.
 
+## How to install
+
+`npm i --save-dev webpack-fabricator-assemble`
+
 ## Examples
 
 ### Without using the HtmlWebpackPlugin
@@ -47,6 +51,8 @@ module.exports = {
     /***
      * Once that is complete, let the HtmlWebpackPlugin plguin where the
      * processed file is so that it [the HtmlWebpackPlugin] can do it's thing.
+     * 
+     * NOTE: The HtmlWebpackPlugin will inject assets into the template.
      ***/
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'dist/index.html')
