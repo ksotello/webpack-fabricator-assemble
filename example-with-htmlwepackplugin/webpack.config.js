@@ -11,10 +11,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/views/layouts/default.html'),
+      filename: path.resolve(__dirname, 'dist/default.html'),
+      inject: false
     }),
     new WebpackFabricatorAssemble({
-      layout: 'index',
-      layouts: [path.resolve(__dirname, 'dist/*')]
+      layouts: [path.resolve(__dirname, 'dist/default.html')],
     }),
   ]
 };

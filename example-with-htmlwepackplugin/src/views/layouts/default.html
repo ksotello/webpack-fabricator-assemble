@@ -2,6 +2,10 @@
 <html lang="en">
   <head>
     <title>{{title}}</title>
+
+    <% for (var index in htmlWebpackPlugin.files.js) { %>
+      <script src="{{ baseurl }}<%= htmlWebpackPlugin.files.js[index] %>"></script>
+    <% } %>
   </head>
   <body>
 

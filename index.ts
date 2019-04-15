@@ -26,16 +26,16 @@ module.exports = (HtmlWebpackPlugin => {
     }
   
     apply(compiler) {
-      compiler.hooks.compilation.tap(
+      compiler.hooks.done.tap(
         'WebpackFabricatorAssembly',
         (compilation, callback) => {
-          fabAssemble(this.options);
-          HtmlWebpackPlugin && HtmlWebpackPlugin.getHooks(compilation).afterEmit.tapAsync(
+          HtmlWebpackPlugin && HtmlWebpackPlugin.getHooks(compilation).afterEmit.tap(
             'WebpackFabricatorAssembly',
             (data, cb) => {
+              fabAssemble(this.options);
               cb(null, data)
             }
-          );
+          ) || fabAssemble(this.options);
         }
       );
     }
