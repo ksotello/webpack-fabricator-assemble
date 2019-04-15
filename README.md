@@ -32,8 +32,8 @@ module.exports = {
 
 ```javascript
 const path = require('path');
-const WebpackFabricatorAssemble = require('webpack-fabricator-assemble');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackFabricatorAssemble = require('webpack-fabricator-assemble')(HtmlWebpackPlugin);
 
 module.exports = {
   entry: './src/index.js',
@@ -42,20 +42,13 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    /***
-     * The WebpackFabricatorAssemble plugin will generate a dist/index.html
-     * file when it is done processing the default.html template.
-     ***/
-    new WebpackFabricatorAssemble(),
-
-    /***
-     * Once that is complete, let the HtmlWebpackPlugin plguin where the
-     * processed file is so that it [the HtmlWebpackPlugin] can do it's thing.
-     * 
-     * NOTE: The HtmlWebpackPlugin will inject assets into the template.
-     ***/
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'dist/index.html')
+      template: path.resolve(__dirname, 'src/views/layouts/default.html'),
+      filename: path.resolve(__dirname, 'dist/default.html'),
+      inject: false
+    }),
+    new WebpackFabricatorAssemble({
+      layouts: [path.resolve(__dirname, 'dist/default.html')],
     }),
   ]
 };
